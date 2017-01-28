@@ -1,0 +1,7 @@
+Radarr Docker
+docker create \
+    --name Radarr \
+    -p 7878:7878 \
+    -e PUID=0 -e PGID=0 \
+    -v /dev/rtc:/dev/rtc:ro \
+    gallileo/radarr

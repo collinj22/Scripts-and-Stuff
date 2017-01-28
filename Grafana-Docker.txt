@@ -1,0 +1,5 @@
+docker run --name grafana \
+  -p 3003:3000 \
+  -v /root/docker/grafana:/var/lib/grafana \
+  --link influxdb \
+  grafana/grafana

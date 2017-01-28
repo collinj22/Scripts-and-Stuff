@@ -1,0 +1,1 @@
+docker run --network=host --privileged -v /proc:/mnt/proc:ro -v /root/docker/collectd/collectd.conf:/etc/collectd/collectd.conf --name collectd fr3nd/collectd

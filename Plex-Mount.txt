@@ -1,0 +1,1 @@
+rclone mount --uid 108 --gid 112 --umask 777 --allow-non-empty --allow-other --read-only --max-read-ahead 14G gdrive:/ docker/plex/gdrive/ & 

@@ -1,0 +1,31 @@
+NAmazon VPS Setup
+
+MOUNT FILESYSTEM
+unionfs-fuse -o cow /home/infinitum/local_sorted=RW:/home/infinitum/acd_sorted=RO /home/infinitum/sorted/
+ACD_CIL COMMANDS
+/home/infinitum/.local/bin/acd_cli sync
+/home/infinitum/.local/bin/acd_cli upload --remove-source-files /home/infinitum/local_sorted/* /
+/home/infinitum/.local/bin/acd_cli mount /home/infinitum/acd_sorted 
+RCLONE COMMANDS
+rclone sync /mnt/user/Media/Movies/ amazon:movies/ --bwlimit 1M --transfers 1 --size-only 
+ADD TV WHILE USING UNRAID SONARR
+find /home/infinitum/downloads/tv/* -maxdepth 0  -mtime -2 -type f -exec cp -r {} /home/infinitum/drone/tv/ \;
+find /home/infinitum/downloads/tv/* -mtime -2 -type d  -exec cp -r {} /home/infinitum/drone/tv/ \;
+unrar e -r -o- *.rar
+BACKUP UP VPS
+tar -cvpzf backup.tar.gz --exclude=/backup.tar.gz --one-file-system /
+
+UNRAID RCLONE SYNC
+nohup rclone sync -v /mnt/user/Media/Movies/ amazon:movies/ --bwlimit .875M --transfers=1 --size-only &
+nohup rclone sync -v /mnt/user/Media/Tv\ Shows/ amazon:tv/ --bwlimit .875M --transfers=1 --size-only &
+rclone copy -v /mnt/user/Media/Tv\ Shows/ amazon:tv/ --bwlimit .875M --transfers=1 --size-only 
+SYNC AMAZON AND GOOGLE DIRVE
+FINAL SYNC TIME TOO ACD
+Transferred: 1457815519867 Bytes (1005.48 kByte/s) Errors: 0 Checks: 1533 Transferred: 1061 Elapsed time: 393h18m7.6s
+
+CRONTAB
+~~~~ @reboot sleep 40 && /home/infinitum/.local/bin/acdcli mount --allow-other --interval 300 /home/infinitum/acdsorted @reboot sleep 50 && unionfs-fuse -o allowother -o cow /home/infinitum/localsorted=RW:/home/infinitum/acd_sorted=RO /home/infinitum/sorted/ ~~~~
+
+TEST VPS SPEED
+wget freevps.us/downloads/bench.sh      -O - -o /dev/null|bash
+unionfs-fuse -o cow /root/docker/glocal=RW:/root/docker/gdrive=RO /root/docker/gsorted/ rclone mount --allow-non-empty --allow-other gdrive:/ docker/gdrive/ &
