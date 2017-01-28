@@ -1,0 +1,4 @@
+@reboot sleep 40 && /usr/sbin/rclone mount --allow-non-empty --allow-other --max-read-ahead 200M gdrive: /home/infinitum/acd_sorted/ &
+@reboot sleep 50 && unionfs-fuse -o allow_other -o cow /home/infinitum/local_sorted=RW:/home/infinitum/acd_sorted=RO /home/infinitum/sorted/
+0 * * * * /home/infinitum/nightlyupload.sh
+
