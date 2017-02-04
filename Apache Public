@@ -1,0 +1,7 @@
+Alias /public "/var/www/"
+<Directory "/var/www/">
+  Options Indexes FollowSymLinks MultiViews
+  AllowOverride all
+  Order allow,deny
+  allow from all
+</Directory>
