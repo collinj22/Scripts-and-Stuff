@@ -1,0 +1,1 @@
+docker run -v /root/docker/yarn/app:/app frapsoft/yarn start
