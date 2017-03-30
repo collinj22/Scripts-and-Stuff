@@ -16,4 +16,4 @@ docker run \
 -v /root/docker/plex/database:/config \
 -v /root/docker/plex/transcode/temp:/transcode \
 -v /root/docker/plex/gdrive:/data/gdrive \
-plexinc/pms-docker
+plexinc/pms-docker:plexpass
