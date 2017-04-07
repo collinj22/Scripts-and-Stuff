@@ -1,0 +1,8 @@
+rclone mount \
+--read-only \
+--allow-other \
+--acd-templink-threshold 0 \
+--stats 1s \
+--buffer-size 100M \
+-v \
+gdrive: /root/docker/gdrive &
