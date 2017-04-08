@@ -1,0 +1,1 @@
+ google-drive-ocamlfuse -label me /var/lib/plexmediaserver/gdrive/ -cc  -o allow_other,ro,atomic_o_trunc,default_permissions,nonempty
