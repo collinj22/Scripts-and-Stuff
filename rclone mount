@@ -5,4 +5,4 @@ rclone mount \
 --stats 1s \
 --buffer-size 100M \
 -v \
-gdrive: /root/docker/gdrive &
+gdrive: /var/lib/plexmediaserver/gdrive &
